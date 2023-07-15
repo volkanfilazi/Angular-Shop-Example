@@ -8,13 +8,8 @@ import { NetworkingService } from '../service/networking.service';
 })
 export class ShopComponent {
 
-  constructor(private networkingService: NetworkingService){}
+  constructor(public networkingService: NetworkingService){}
 
-  ngOnInit(){
-    this.networkingService.getAllProducts()
-  }
+  
 
-  get allProducts() {
-    return this.networkingService.allProducts
-  }
 }
