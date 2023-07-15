@@ -1,0 +1,16 @@
+<div class="p-2">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <div class="flex gap-2 border-[1px] p-2" *ngFor="let product of allProducts">
+      <div class="w-1/2 flex gap-5">
+        <img class="p-3" [src]="product.image" alt="">
+      </div>
+      <div class="w-full py-10 flex flex-col justify-between">
+        <p>{{ product.title }}</p>
+        <p class="font-bold">€ {{ product.price }}</p>
+        <div class="flex justify-end w-full">
+          <button class=" border-[1px] z-10  cursor-pointer p-1 border-[#471d6b] hover:bg-[#471d6b] transition-all duration-300 hover:text-white text-[#471d6b] font-serif font-bold">buy now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
