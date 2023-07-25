@@ -31,8 +31,8 @@ export class NetworkingService {
     return this.allProducts.filter(product => product.title.toLowerCase().includes(searchText));
   }
 
-  selectedProductsBySearchbar(selectedItem: string): Products[]{
-    return this.allProducts.filter(product => product.title.toLowerCase().includes(selectedItem));
+  selectedProductsBySearchbar(selectedItem: string): Products | undefined{
+    return this.allProducts.find(product => product.title.toLowerCase().includes(selectedItem));
   }
   
 }

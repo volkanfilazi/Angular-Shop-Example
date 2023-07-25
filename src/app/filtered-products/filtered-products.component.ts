@@ -17,6 +17,6 @@ export class FilteredProductsComponent {
   }
 
   filteredProducts(){
-   this.selectedProducts =  this.networkingService.selectedProductsBySearchbar(this.selectedItem)
+  //  this selectedProducts =  this.networkingService.selectedProductsBySearchbar(this.selectedItem)
   }
 }

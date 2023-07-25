@@ -1,21 +1,43 @@
-<div class="w-full h-10 border-b-[1px] flex items-center">
-  <ul class="grid grid-cols-3 items-center w-full p-4">
-    <li>Volki Shop</li>
+<div class="w-full border-b-[1px] flex items-center">
+  <ul class="hidden md:grid grid-cols-3 items-center w-full p-4">
+    <li class="cursor-pointer" (click)="navigateToHome()">Volki Shop</li>
     <li class="flex flex-col items-center justify-center">
-      <input type="email" class="form-control border-[1px] border-black w-full" id="search-text" aria-describedby="search-text" 
+      <input type="email" class="form-control border-[1px] outline-none focus:border-blue-700 rounded-md border-black w-full" id="search-text" aria-describedby="search-text" 
         [(ngModel)]="searchText" placeholder="Enter text to search" 
         (input)="updateFilteredProducts()"
         autofocus>
 
       <div *ngIf="searchText.length > 0" class="relative w-full h-full">
-        <ul class="list-group list-group-flush absolute w-full bg-gray-600 text-white z-20">
+        <ul class="list-group list-group-flush absolute w-full bg-gray-600 max-h-[350px] overflow-auto text-white z-20">
           <!-- Filtered products using the searchText -->
-          <li class="list-group-item" *ngFor="let c of filteredProducts">
-            <p (click)="c.title" class="cursor-pointer hover:bg-red-500">{{c.title}}</p>
+          <li class="list-group-item" *ngFor="let product of filteredProducts">
+            <p (click)="selectedProduct(product.title)" class="cursor-pointer hover:bg-red-500">{{product.title}}</p>
           </li>
         </ul>
       </div>
     </li>
     <li class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="green" d="M5.5 21c-.78 0-1.46-.45-1.79-1.1L1.1 10.44L1 10a1 1 0 0 1 1-1h4.58l4.6-6.57a.997.997 0 0 1 1.65.01L17.42 9H22a1 1 0 0 1 1 1l-.04.29l-2.67 9.61c-.33.65-1.01 1.1-1.79 1.1h-13M12 4.74L9 9h6l-3-4.26M12 13a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2Z"/></svg></li>
+  </ul>
+
+  <ul class="grid grid-cols-1 gap-2 md:hidden items-center w-full p-4">
+    <div class="flex justify-between">
+      <li class="cursor-pointer" (click)="navigateToHome()">Volki Shop</li>
+      <li class="flex justify-end"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="green" d="M5.5 21c-.78 0-1.46-.45-1.79-1.1L1.1 10.44L1 10a1 1 0 0 1 1-1h4.58l4.6-6.57a.997.997 0 0 1 1.65.01L17.42 9H22a1 1 0 0 1 1 1l-.04.29l-2.67 9.61c-.33.65-1.01 1.1-1.79 1.1h-13M12 4.74L9 9h6l-3-4.26M12 13a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2Z"/></svg></li>
+    </div>
+    <li class="flex flex-col items-center justify-center">
+      <input type="email" class="form-control border-[1px] outline-none focus:border-blue-700 rounded-md border-black w-full" id="search-text" aria-describedby="search-text" 
+        [(ngModel)]="searchText" placeholder="Enter text to search" 
+        (input)="updateFilteredProducts()"
+        autofocus>
+
+      <div *ngIf="searchText.length > 0" class="relative w-full">
+        <ul class="list-group list-group-flush absolute w-full max-h-[250px] overflow-auto bg-gray-600 text-white z-20">
+          <!-- Filtered products using the searchText -->
+          <li class="list-group-item" *ngFor="let product of filteredProducts">
+            <p (click)="selectedProduct(product.title)" class="cursor-pointer hover:bg-red-500">{{product.title}}</p>
+          </li>
+        </ul>
+      </div>
+    </li>
   </ul>
 </div>
