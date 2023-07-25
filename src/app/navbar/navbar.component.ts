@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NetworkingService } from '../service/networking.service';
 import { Products } from '../interfaces/products'
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +12,6 @@ export class NavbarComponent {
   searchText = '';
   allProducts: Products[] = [];
   filteredProducts: Products[] = [];
-  selectedProducts: Products[] = [];
 
   characters = [
     'Ant-Man',
@@ -25,19 +24,26 @@ export class NavbarComponent {
     'Batwoman'
   ]
 
-  constructor(public networkingService: NetworkingService) {}
+  constructor(public networkingService: NetworkingService, private _router: Router) {}
 
   ngOnInit(){
     this.networkingService.getAllProducts()
-    this.updateFilteredProducts(); // Başlangıçta tüm ürünleri göstermek için çağırın.
+    this.updateFilteredProducts(); 
   }
   updateFilteredProducts() {
     this.filteredProducts = this.networkingService.filterProducts(this.searchText);
   }
 
+  navigateToHome(){
+    this._router.navigate([''])
+  }
   selectedProduct(selectedItem: string){
-    this.selectedProducts =  this.networkingService.selectedProductsBySearchbar(selectedItem)
-    console.log(this.selectedProducts)
+    let selectedProducts =  this.networkingService.selectedProductsBySearchbar(selectedItem)
+    if(selectedProducts){
+      this._router.navigate(['filtered'])
+      this.searchText = ''
+      console.log(selectedProducts)
+    }
    }
 
 }
